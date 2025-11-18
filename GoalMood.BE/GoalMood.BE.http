@@ -1,0 +1,6 @@
+@GoalMood.BE_HostAddress = http://localhost:5183
+
+GET {{GoalMood.BE_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
