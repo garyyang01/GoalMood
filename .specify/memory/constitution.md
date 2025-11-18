@@ -270,4 +270,21 @@ Follow-up TODOs: None
 - Technology-specific patterns in `CLAUDE.md` (Dapper, Vue Composition API)
 - This constitution focuses on non-negotiable rules, CLAUDE.md provides implementation guidance
 
+## Language and Communication Rules
+
+**Response Language:**
+- Use **Traditional Chinese (繁體中文)** for all responses, explanations, and user-facing messages.
+- Use **Traditional Chinese** for all documentation files (`.md` files, README, etc.).
+
+**Code Language:**
+- Use **English** for all code (variables, functions, classes, methods).
+- Use **English** for all code comments and documentation strings.
+- Use **English** for all programming-related files (JSON, YAML, config files).
+
+**Examples:**
+- Conversation with user → Traditional Chinese
+- Code and comments → English
+- `README.md` → Traditional Chinese
+- Git commit messages → English
+
 **Version**: 1.0.0 | **Ratified**: 2025-01-18 | **Last Amended**: 2025-01-18
