@@ -45,7 +45,7 @@
 **⚠️ 關鍵**：在此階段完成前，無法開始任何使用者故事的工作
 
 - [ ] T011 在 GoalMood.BE/Models/Mood.cs 建立 Mood 列舉，值為 Happy=1, Content=2, Neutral=3, Sad=4, Stressed=5
-- [ ] T012 在 GoalMood.BE/Models/TeamMember.cs 依據 data-model.md 建立 TeamMember 實體
+- [ ] T012 在 GoalMood.BE/Models/TeamMember.cs 依據 data-model.md 建立 TeamMember 實體，包含姓名最大長度 50 字元驗證（依據 spec.md FR-023）
 - [ ] T013 在 GoalMood.BE/Models/Goal.cs 依據 data-model.md 建立 Goal 實體
 - [ ] T014 執行資料庫遷移 GoalMood.BE/Migrations/001_InitialSchema.sql 以建立 TeamMembers 和 Goals 資料表
 - [ ] T015 驗證已依據 data-model.md 建立外鍵約束和索引（PRAGMA foreign_keys=ON, idx_goals_created_date, idx_goals_team_member）
@@ -94,7 +94,7 @@
 - [ ] T040 [US1] 在 MemberCard.vue 實作成員姓名、心情表情符號徽章和目標清單顯示
 - [ ] T041 [US1] 在 MemberCard.vue 使用 DaisyUI badge 元件顯示完成計數徽章
 - [ ] T042 [US1] 在 GoalMood.FE/src/App.vue 更新 App.vue 以取得並顯示所有成員卡片
-- [ ] T043 [US1] 在 App.vue 當無團隊成員時依據 FR-020 加入空白狀態訊息
+- [ ] T043 [US1] 在 App.vue 當無團隊成員時加入空白狀態訊息「尚無團隊成員資料」（依據 spec.md 邊界情況）
 
 ### 使用者故事 1 的整合測試（必要）
 
@@ -119,7 +119,7 @@
 - [ ] T049 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 POST /api/goals 有效輸入建立合約測試 - 依據 contracts/api.yaml 驗證 201 狀態和 GoalDto 回應
 - [ ] T050 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 POST /api/goals 缺少 teamMemberId 建立合約測試 - 依據驗收情境 4 驗證 400 狀態和錯誤訊息
 - [ ] T051 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 POST /api/goals 空白描述建立合約測試 - 依據驗收情境 5 驗證 400 狀態和錯誤訊息
-- [ ] T052 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 POST /api/goals 描述超過 500 字元建立合約測試 - 依據 FR-014 驗證 400 狀態
+- [ ] T052 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 POST /api/goals 描述超過 500 字元建立合約測試 - 驗證 400 狀態（目標描述不超過 500 字元）
 - [ ] T053 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 POST /api/goals 不存在的 teamMemberId 建立合約測試 - 依據 contracts/api.yaml 驗證 404 狀態
 - [ ] T054 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 DELETE /api/goals/{goalId} 有效 goalId 建立合約測試 - 依據 contracts/api.yaml 驗證 204 狀態
 - [ ] T055 [P] [US2] 在 tests/contract/GoalEndpointsTests.cs 為 DELETE /api/goals/{goalId} 不存在的 goalId 建立合約測試 - 驗證 404 狀態
@@ -131,14 +131,14 @@
 - [ ] T058 [US2] 在 GoalMood.BE/Program.cs 依賴注入容器註冊 IGoalRepository
 - [ ] T059 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 建立 GoalEndpoints 類別
 - [ ] T060 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 POST /api/goals minimal API 端點並加入驗證
-- [ ] T061 [US2] 在 GoalEndpoints.cs 加入 CreateGoalRequest 驗證 - teamMemberId 必填，description 1-500 字元，依據 FR-013, FR-014
+- [ ] T061 [US2] 在 GoalEndpoints.cs 加入 CreateGoalRequest 驗證 - teamMemberId 必填，description 1-500 字元（必須選擇團隊成員且描述不為空）
 - [ ] T062 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 DELETE /api/goals/{goalId} minimal API 端點
 - [ ] T063 [US2] 在 GoalMood.FE/src/composables/useGoals.ts 建立 useGoals composable，包含 createGoal 和 deleteGoal 方法
 - [ ] T064 [US2] 在 GoalMood.FE/src/components/GoalInput.vue 建立 GoalInput 元件，使用 DaisyUI 表單元件
 - [ ] T065 [US2] 在 GoalInput.vue 使用 DaisyUI select 元件實作團隊成員下拉選單，依據 research.md
-- [ ] T066 [US2] 在 GoalInput.vue 實作目標描述 textarea，包含 500 字元限制驗證，依據 FR-014
+- [ ] T066 [US2] 在 GoalInput.vue 實作目標描述 textarea，包含 500 字元限制驗證
 - [ ] T067 [US2] 在 GoalInput.vue 加入表單提交處理器以呼叫 createGoal API
-- [ ] T068 [US2] 在 GoalInput.vue 依據 FR-013, FR-014 為缺少 teamMemberId 或空白描述顯示驗證錯誤訊息
+- [ ] T068 [US2] 在 GoalInput.vue 為缺少 teamMemberId 或空白描述顯示驗證錯誤訊息（必須選擇團隊成員且輸入目標描述）
 - [ ] T069 [US2] 在 MemberCard.vue 為每個目標加入刪除按鈕及垃圾桶圖示
 - [ ] T070 [US2] 在 MemberCard.vue 使用 DaisyUI modal 元件實作刪除確認對話框，依據澄清問題 5
 - [ ] T071 [US2] 在 MemberCard.vue 加入刪除目標處理器，在確認後呼叫 deleteGoal API
@@ -164,7 +164,7 @@
 ### 使用者故事 3 的合約測試（必要）
 
 - [ ] T077 [P] [US3] 在 tests/contract/TeamMemberEndpointsTests.cs 為 PUT /api/members/{memberId}/mood 有效輸入建立合約測試 - 依據 contracts/api.yaml 驗證 200 狀態和更新的 TeamMemberDto
-- [ ] T078 [P] [US3] 在 tests/contract/TeamMemberEndpointsTests.cs 為 PUT /api/members/{memberId}/mood 無效心情值建立合約測試 - 依據 FR-016 驗證 400 狀態和錯誤訊息
+- [ ] T078 [P] [US3] 在 tests/contract/TeamMemberEndpointsTests.cs 為 PUT /api/members/{memberId}/mood 無效心情值建立合約測試 - 驗證 400 狀態和錯誤訊息（心情必須為 1-5）
 - [ ] T079 [P] [US3] 在 tests/contract/TeamMemberEndpointsTests.cs 為 PUT /api/members/{memberId}/mood 不存在的 memberId 建立合約測試 - 驗證 404 狀態
 
 ### 使用者故事 3 的實作
@@ -172,13 +172,13 @@
 - [ ] T080 [US3] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 加入 UpdateMoodAsync 方法到 ITeamMemberRepository 介面
 - [ ] T081 [US3] 在 TeamMemberRepository.cs 使用 Dapper ExecuteAsync 參數化查詢實作 UpdateMoodAsync
 - [ ] T082 [US3] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/members/{memberId}/mood minimal API 端點
-- [ ] T083 [US3] 在 TeamMemberEndpoints.cs 加入 UpdateMoodRequest 驗證 - mood 必須為 1-5，依據 FR-016
+- [ ] T083 [US3] 在 TeamMemberEndpoints.cs 加入 UpdateMoodRequest 驗證 - mood 必須為 1-5（必須選擇有效的心情表情符號）
 - [ ] T084 [US3] 在 GoalMood.FE/src/composables/useMoods.ts 建立 useMoods composable，包含 updateMood 方法
 - [ ] T085 [US3] 在 GoalMood.FE/src/components/MoodSelector.vue 建立 MoodSelector 元件，使用 DaisyUI 表單元件
 - [ ] T086 [US3] 在 MoodSelector.vue 使用 DaisyUI select 元件實作團隊成員下拉選單
 - [ ] T087 [US3] 在 MoodSelector.vue 使用 DaisyUI btn-group 實作心情表情符號按鈕群組，依據 research.md（😀 😊 😐 😞 😤）
 - [ ] T088 [US3] 在 MoodSelector.vue 加入表單提交處理器以呼叫 updateMood API
-- [ ] T089 [US3] 在 MoodSelector.vue 依據 FR-015, FR-016 為缺少 teamMemberId 或 mood 顯示驗證錯誤訊息
+- [ ] T089 [US3] 在 MoodSelector.vue 為缺少 teamMemberId 或 mood 顯示驗證錯誤訊息（必須選擇團隊成員和心情表情符號）
 - [ ] T090 [US3] 在 App.vue 於心情更新後重新整理儀表板資料以顯示新的心情表情符號
 
 ### 使用者故事 3 的整合測試（必要）
@@ -211,7 +211,7 @@
 - [ ] T100 [US4] 在 GoalMood.FE/src/composables/useGoals.ts 加入 toggleComplete 方法到 useGoals composable
 - [ ] T101 [US4] 在 MemberCard.vue 加入核取方塊變更處理器，在勾選/取消勾選時呼叫 toggleComplete API
 - [ ] T102 [US4] 在 MemberCard.vue 使用 :class 綁定對已完成的目標套用刪除線 CSS 類別
-- [ ] T103 [US4] 在 MemberCard.vue 依據 FR-011 於切換後重新整理完成計數徽章
+- [ ] T103 [US4] 在 MemberCard.vue 於目標完成狀態切換後重新整理完成計數徽章（即時更新）
 
 ### 使用者故事 4 的整合測試（必要）
 
@@ -248,7 +248,7 @@
 - [ ] T118 [US5] 在 StatsPanel.vue 顯示完成百分比，包含格式化（例如「已完成 65%」）
 - [ ] T119 [US5] 在 StatsPanel.vue 顯示心情分布計數，包含表情符號標籤和計數（例如「😀 3人, 😊 2人」）
 - [ ] T120 [US5] 在 App.vue 儀表板加入 StatsPanel 元件
-- [ ] T121 [US5] 在 App.vue 依據 FR-011, FR-012 於任何目標完成切換或心情更新後重新整理統計資料
+- [ ] T121 [US5] 在 App.vue 於任何目標完成切換或心情更新後重新整理統計資料（即時更新完成計數和心情顯示）
 
 ### 使用者故事 5 的整合測試（必要）
 
