@@ -25,14 +25,14 @@
 
 **目的**：專案初始化與基本結構
 
-- [ ] T001 驗證已安裝 .NET 8 SDK 和 Node.js 18+ 依據 quickstart.md 前置需求
-- [ ] T002 在 GoalMood.BE/ 目錄建立 SQLite 資料庫檔案 GoalMood.db
-- [ ] T003 在 GoalMood.BE/GoalMood.BE.csproj 安裝 Dapper NuGet 套件
-- [ ] T004 [P] 在 GoalMood.BE/GoalMood.BE.csproj 安裝 Microsoft.Data.Sqlite NuGet 套件
-- [ ] T005 [P] 在 GoalMood.BE/GoalMood.BE.csproj 安裝 Swashbuckle.AspNetCore NuGet 套件以支援 Swagger
-- [ ] T006 使用 Vite 在 GoalMood.FE/ 建立 Vue 3 TypeScript 專案
-- [ ] T007 在 GoalMood.FE/package.json 安裝 DaisyUI 和 Tailwind CSS 依賴項
-- [ ] T008 [P] 在 GoalMood.FE/tailwind.config.js 設定 Tailwind CSS 並加入 DaisyUI 外掛
+- [X] T001 驗證已安裝 .NET 8 SDK 和 Node.js 18+ 依據 quickstart.md 前置需求
+- [X] T002 在 GoalMood.BE/ 目錄建立 SQLite 資料庫檔案 GoalMood.db
+- [X] T003 在 GoalMood.BE/GoalMood.BE.csproj 安裝 Dapper NuGet 套件
+- [X] T004 [P] 在 GoalMood.BE/GoalMood.BE.csproj 安裝 Microsoft.Data.Sqlite NuGet 套件
+- [X] T005 [P] 在 GoalMood.BE/GoalMood.BE.csproj 安裝 Swashbuckle.AspNetCore NuGet 套件以支援 Swagger
+- [X] T006 使用 Vite 在 GoalMood.FE/ 建立 Vue 3 TypeScript 專案
+- [X] T007 在 GoalMood.FE/package.json 安裝 DaisyUI 和 Tailwind CSS 依賴項
+- [X] T008 [P] 在 GoalMood.FE/tailwind.config.js 設定 Tailwind CSS 並加入 DaisyUI 外掛
 - [ ] T009 [P] 建立測試專案結構 tests/contract/ 和 tests/integration/
 - [ ] T010 [P] 在測試專案中安裝 xUnit 和 FluentAssertions NuGet 套件
 
@@ -44,21 +44,21 @@
 
 **⚠️ 關鍵**：在此階段完成前，無法開始任何使用者故事的工作
 
-- [ ] T011 在 GoalMood.BE/Models/Mood.cs 建立 Mood 列舉，值為 Happy=1, Content=2, Neutral=3, Sad=4, Stressed=5
-- [ ] T012 在 GoalMood.BE/Models/TeamMember.cs 依據 data-model.md 建立 TeamMember 實體，包含姓名最大長度 50 字元驗證（依據 spec.md FR-023）
-- [ ] T013 在 GoalMood.BE/Models/Goal.cs 依據 data-model.md 建立 Goal 實體
-- [ ] T014 執行資料庫遷移 GoalMood.BE/Migrations/001_InitialSchema.sql 以建立 TeamMembers 和 Goals 資料表
-- [ ] T015 驗證已依據 data-model.md 建立外鍵約束和索引（PRAGMA foreign_keys=ON, idx_goals_created_date, idx_goals_team_member）
-- [ ] T016 [P] 在 GoalMood.BE/Models/DTOs/GoalDto.cs 依據 data-model.md 建立 GoalDto record
-- [ ] T017 [P] 在 GoalMood.BE/Models/DTOs/TeamMemberDto.cs 依據 data-model.md 建立 TeamMemberDto record
-- [ ] T018 [P] 在 GoalMood.BE/Models/DTOs/StatsDto.cs 依據 data-model.md 建立 StatsDto record
-- [ ] T019 [P] 在 GoalMood.BE/Models/DTOs/CreateGoalRequest.cs 依據 data-model.md 建立 CreateGoalRequest record
-- [ ] T020 [P] 在 GoalMood.BE/Models/DTOs/UpdateMoodRequest.cs 依據 data-model.md 建立 UpdateMoodRequest record
-- [ ] T021 在 GoalMood.BE/Program.cs 註冊 IDbConnection，使用來自 appsettings.json 的 SQLite 連線字串
-- [ ] T022 在 GoalMood.BE/Program.cs 依據 research.md 決策 D2 啟用 SQLite WAL 模式
-- [ ] T023 在 GoalMood.BE/Program.cs 依據 quickstart.md 設定 CORS 以允許 http://localhost:5173
-- [ ] T024 在 GoalMood.BE/Program.cs 依據 contracts/api.yaml 設定 Swagger/OpenAPI
-- [ ] T025 在 GoalMood.BE/Migrations/seed-data.sql 依據 data-model.md 填入測試資料（5 個團隊成員，6 個目標）
+- [X] T011 在 GoalMood.BE/Models/Mood.cs 建立 Mood 列舉，值為 Happy=1, Content=2, Neutral=3, Sad=4, Stressed=5
+- [X] T012 在 GoalMood.BE/Models/TeamMember.cs 依據 data-model.md 建立 TeamMember 實體，包含姓名最大長度 50 字元驗證（依據 spec.md FR-023）
+- [X] T013 在 GoalMood.BE/Models/Goal.cs 依據 data-model.md 建立 Goal 實體
+- [X] T014 執行資料庫遷移 GoalMood.BE/Migrations/001_InitialSchema.sql 以建立 TeamMembers 和 Goals 資料表
+- [X] T015 驗證已依據 data-model.md 建立外鍵約束和索引（PRAGMA foreign_keys=ON, idx_goals_created_date, idx_goals_team_member）
+- [X] T016 [P] 在 GoalMood.BE/Models/DTOs/GoalDto.cs 依據 data-model.md 建立 GoalDto record
+- [X] T017 [P] 在 GoalMood.BE/Models/DTOs/TeamMemberDto.cs 依據 data-model.md 建立 TeamMemberDto record
+- [X] T018 [P] 在 GoalMood.BE/Models/DTOs/StatsDto.cs 依據 data-model.md 建立 StatsDto record
+- [X] T019 [P] 在 GoalMood.BE/Models/DTOs/CreateGoalRequest.cs 依據 data-model.md 建立 CreateGoalRequest record
+- [X] T020 [P] 在 GoalMood.BE/Models/DTOs/UpdateMoodRequest.cs 依據 data-model.md 建立 UpdateMoodRequest record
+- [X] T021 在 GoalMood.BE/Program.cs 註冊 IDbConnection，使用來自 appsettings.json 的 SQLite 連線字串
+- [X] T022 在 GoalMood.BE/Program.cs 依據 research.md 決策 D2 啟用 SQLite WAL 模式
+- [X] T023 在 GoalMood.BE/Program.cs 依據 quickstart.md 設定 CORS 以允許 http://localhost:5173
+- [X] T024 在 GoalMood.BE/Program.cs 依據 contracts/api.yaml 設定 Swagger/OpenAPI
+- [X] T025 在 GoalMood.BE/Migrations/seed-data.sql 依據 data-model.md 填入測試資料（5 個團隊成員，6 個目標）
 
 **檢查點**：基礎建設就緒 - 使用者故事實作現在可以並行開始
 
@@ -79,22 +79,22 @@
 
 ### 使用者故事 1 的實作
 
-- [ ] T028 [US1] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 建立 ITeamMemberRepository 介面，包含 GetAllWithTodayGoalsAsync 方法
-- [ ] T029 [US1] 在 GoalMood.BE/Data/TeamMemberRepository.cs 實作 TeamMemberRepository，使用 Dapper multi-mapping 避免 N+1 查詢，依據 data-model.md
-- [ ] T030 [US1] 在 GoalMood.BE/Program.cs 依賴注入容器註冊 ITeamMemberRepository
-- [ ] T031 [US1] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 建立 TeamMemberEndpoints 類別
-- [ ] T032 [US1] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 依據 contracts/api.yaml 實作 GET /api/members minimal API 端點
-- [ ] T033 [US1] 在 TeamMemberDto 加入心情表情符號對應邏輯，將 Mood enum 轉換為表情符號字串，依據 spec.md
-- [ ] T034 [US1] 在 TeamMemberDto 加入 completedCount 和 totalCount 計算邏輯
-- [ ] T035 [US1] 在 GoalMood.FE/src/api/client.ts 建立 API 客戶端，使用來自 .env.local 的基礎 URL（VITE_API_BASE_URL）
-- [ ] T036 [P] [US1] 在 GoalMood.FE/src/types/TeamMember.ts 建立 TeamMember TypeScript 介面，對應 TeamMemberDto schema
-- [ ] T037 [P] [US1] 在 GoalMood.FE/src/types/Goal.ts 建立 Goal TypeScript 介面，對應 GoalDto schema
-- [ ] T038 [US1] 在 GoalMood.FE/src/composables/useMembers.ts 建立 useMembers composable，包含 fetchMembers 方法
-- [ ] T039 [US1] 在 GoalMood.FE/src/components/MemberCard.vue 建立 MemberCard 元件，使用 DaisyUI card 類別，依據 research.md
-- [ ] T040 [US1] 在 MemberCard.vue 實作成員姓名、心情表情符號徽章和目標清單顯示
-- [ ] T041 [US1] 在 MemberCard.vue 使用 DaisyUI badge 元件顯示完成計數徽章
-- [ ] T042 [US1] 在 GoalMood.FE/src/App.vue 更新 App.vue 以取得並顯示所有成員卡片
-- [ ] T043 [US1] 在 App.vue 當無團隊成員時加入空白狀態訊息「尚無團隊成員資料」（依據 spec.md 邊界情況）
+- [X] T028 [US1] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 建立 ITeamMemberRepository 介面，包含 GetAllWithTodayGoalsAsync 方法
+- [X] T029 [US1] 在 GoalMood.BE/Data/TeamMemberRepository.cs 實作 TeamMemberRepository，使用 Dapper multi-mapping 避免 N+1 查詢，依據 data-model.md
+- [X] T030 [US1] 在 GoalMood.BE/Program.cs 依賴注入容器註冊 ITeamMemberRepository
+- [X] T031 [US1] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 建立 TeamMemberEndpoints 類別
+- [X] T032 [US1] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 依據 contracts/api.yaml 實作 GET /api/members minimal API 端點
+- [X] T033 [US1] 在 TeamMemberDto 加入心情表情符號對應邏輯，將 Mood enum 轉換為表情符號字串，依據 spec.md
+- [X] T034 [US1] 在 TeamMemberDto 加入 completedCount 和 totalCount 計算邏輯
+- [X] T035 [US1] 在 GoalMood.FE/src/api/client.ts 建立 API 客戶端，使用來自 .env.local 的基礎 URL（VITE_API_BASE_URL）
+- [X] T036 [P] [US1] 在 GoalMood.FE/src/types/TeamMember.ts 建立 TeamMember TypeScript 介面，對應 TeamMemberDto schema
+- [X] T037 [P] [US1] 在 GoalMood.FE/src/types/Goal.ts 建立 Goal TypeScript 介面，對應 GoalDto schema
+- [X] T038 [US1] 在 GoalMood.FE/src/composables/useMembers.ts 建立 useMembers composable，包含 fetchMembers 方法
+- [X] T039 [US1] 在 GoalMood.FE/src/components/MemberCard.vue 建立 MemberCard 元件，使用 DaisyUI card 類別，依據 research.md
+- [X] T040 [US1] 在 MemberCard.vue 實作成員姓名、心情表情符號徽章和目標清單顯示
+- [X] T041 [US1] 在 MemberCard.vue 使用 DaisyUI badge 元件顯示完成計數徽章
+- [X] T042 [US1] 在 GoalMood.FE/src/App.vue 更新 App.vue 以取得並顯示所有成員卡片
+- [X] T043 [US1] 在 App.vue 當無團隊成員時加入空白狀態訊息「尚無團隊成員資料」（依據 spec.md 邊界情況）
 
 ### 使用者故事 1 的整合測試（必要）
 
@@ -126,23 +126,23 @@
 
 ### 使用者故事 2 的實作
 
-- [ ] T056 [US2] 在 GoalMood.BE/Data/IGoalRepository.cs 建立 IGoalRepository 介面，包含 CreateAsync 和 DeleteAsync 方法
-- [ ] T057 [US2] 在 GoalMood.BE/Data/GoalRepository.cs 實作 GoalRepository，使用 Dapper 參數化查詢，依據 constitution Dapper-first 原則
-- [ ] T058 [US2] 在 GoalMood.BE/Program.cs 依賴注入容器註冊 IGoalRepository
-- [ ] T059 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 建立 GoalEndpoints 類別
-- [ ] T060 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 POST /api/goals minimal API 端點並加入驗證
-- [ ] T061 [US2] 在 GoalEndpoints.cs 加入 CreateGoalRequest 驗證 - teamMemberId 必填，description 1-500 字元（必須選擇團隊成員且描述不為空）
-- [ ] T062 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 DELETE /api/goals/{goalId} minimal API 端點
-- [ ] T063 [US2] 在 GoalMood.FE/src/composables/useGoals.ts 建立 useGoals composable，包含 createGoal 和 deleteGoal 方法
-- [ ] T064 [US2] 在 GoalMood.FE/src/components/GoalInput.vue 建立 GoalInput 元件，使用 DaisyUI 表單元件
-- [ ] T065 [US2] 在 GoalInput.vue 使用 DaisyUI select 元件實作團隊成員下拉選單，依據 research.md
-- [ ] T066 [US2] 在 GoalInput.vue 實作目標描述 textarea，包含 500 字元限制驗證
-- [ ] T067 [US2] 在 GoalInput.vue 加入表單提交處理器以呼叫 createGoal API
-- [ ] T068 [US2] 在 GoalInput.vue 為缺少 teamMemberId 或空白描述顯示驗證錯誤訊息（必須選擇團隊成員且輸入目標描述）
-- [ ] T069 [US2] 在 MemberCard.vue 為每個目標加入刪除按鈕及垃圾桶圖示
-- [ ] T070 [US2] 在 MemberCard.vue 使用 DaisyUI modal 元件實作刪除確認對話框，依據澄清問題 5
-- [ ] T071 [US2] 在 MemberCard.vue 加入刪除目標處理器，在確認後呼叫 deleteGoal API
-- [ ] T072 [US2] 在 App.vue 於目標建立或刪除後重新整理儀表板資料
+- [X] T056 [US2] 在 GoalMood.BE/Data/IGoalRepository.cs 建立 IGoalRepository 介面，包含 CreateAsync 和 DeleteAsync 方法
+- [X] T057 [US2] 在 GoalMood.BE/Data/GoalRepository.cs 實作 GoalRepository，使用 Dapper 參數化查詢，依據 constitution Dapper-first 原則
+- [X] T058 [US2] 在 GoalMood.BE/Program.cs 依賴注入容器註冊 IGoalRepository
+- [X] T059 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 建立 GoalEndpoints 類別
+- [X] T060 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 POST /api/goals minimal API 端點並加入驗證
+- [X] T061 [US2] 在 GoalEndpoints.cs 加入 CreateGoalRequest 驗證 - teamMemberId 必填，description 1-500 字元（必須選擇團隊成員且描述不為空）
+- [X] T062 [US2] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 DELETE /api/goals/{goalId} minimal API 端點
+- [X] T063 [US2] 在 GoalMood.FE/src/composables/useGoals.ts 建立 useGoals composable，包含 createGoal 和 deleteGoal 方法
+- [X] T064 [US2] 在 GoalMood.FE/src/components/GoalInput.vue 建立 GoalInput 元件，使用 DaisyUI 表單元件
+- [X] T065 [US2] 在 GoalInput.vue 使用 DaisyUI select 元件實作團隊成員下拉選單，依據 research.md
+- [X] T066 [US2] 在 GoalInput.vue 實作目標描述 textarea，包含 500 字元限制驗證
+- [X] T067 [US2] 在 GoalInput.vue 加入表單提交處理器以呼叫 createGoal API
+- [X] T068 [US2] 在 GoalInput.vue 為缺少 teamMemberId 或空白描述顯示驗證錯誤訊息（必須選擇團隊成員且輸入目標描述）
+- [X] T069 [US2] 在 MemberCard.vue 為每個目標加入刪除按鈕及垃圾桶圖示
+- [X] T070 [US2] 在 MemberCard.vue 使用 DaisyUI modal 元件實作刪除確認對話框，依據澄清問題 5
+- [X] T071 [US2] 在 MemberCard.vue 加入刪除目標處理器，在確認後呼叫 deleteGoal API
+- [X] T072 [US2] 在 App.vue 於目標建立或刪除後重新整理儀表板資料
 
 ### 使用者故事 2 的整合測試（必要）
 
@@ -169,17 +169,17 @@
 
 ### 使用者故事 3 的實作
 
-- [ ] T080 [US3] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 加入 UpdateMoodAsync 方法到 ITeamMemberRepository 介面
-- [ ] T081 [US3] 在 TeamMemberRepository.cs 使用 Dapper ExecuteAsync 參數化查詢實作 UpdateMoodAsync
-- [ ] T082 [US3] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/members/{memberId}/mood minimal API 端點
-- [ ] T083 [US3] 在 TeamMemberEndpoints.cs 加入 UpdateMoodRequest 驗證 - mood 必須為 1-5（必須選擇有效的心情表情符號）
-- [ ] T084 [US3] 在 GoalMood.FE/src/composables/useMoods.ts 建立 useMoods composable，包含 updateMood 方法
-- [ ] T085 [US3] 在 GoalMood.FE/src/components/MoodSelector.vue 建立 MoodSelector 元件，使用 DaisyUI 表單元件
-- [ ] T086 [US3] 在 MoodSelector.vue 使用 DaisyUI select 元件實作團隊成員下拉選單
-- [ ] T087 [US3] 在 MoodSelector.vue 使用 DaisyUI btn-group 實作心情表情符號按鈕群組，依據 research.md（😀 😊 😐 😞 😤）
-- [ ] T088 [US3] 在 MoodSelector.vue 加入表單提交處理器以呼叫 updateMood API
-- [ ] T089 [US3] 在 MoodSelector.vue 為缺少 teamMemberId 或 mood 顯示驗證錯誤訊息（必須選擇團隊成員和心情表情符號）
-- [ ] T090 [US3] 在 App.vue 於心情更新後重新整理儀表板資料以顯示新的心情表情符號
+- [X] T080 [US3] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 加入 UpdateMoodAsync 方法到 ITeamMemberRepository 介面
+- [X] T081 [US3] 在 TeamMemberRepository.cs 使用 Dapper ExecuteAsync 參數化查詢實作 UpdateMoodAsync
+- [X] T082 [US3] 在 GoalMood.BE/Endpoints/TeamMemberEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/members/{memberId}/mood minimal API 端點
+- [X] T083 [US3] 在 TeamMemberEndpoints.cs 加入 UpdateMoodRequest 驗證 - mood 必須為 1-5（必須選擇有效的心情表情符號）
+- [X] T084 [US3] 在 GoalMood.FE/src/composables/useMoods.ts 建立 useMoods composable，包含 updateMood 方法
+- [X] T085 [US3] 在 GoalMood.FE/src/components/MoodSelector.vue 建立 MoodSelector 元件，使用 DaisyUI 表單元件
+- [X] T086 [US3] 在 MoodSelector.vue 使用 DaisyUI select 元件實作團隊成員下拉選單
+- [X] T087 [US3] 在 MoodSelector.vue 使用 DaisyUI btn-group 實作心情表情符號按鈕群組，依據 research.md（😀 😊 😐 😞 😤）
+- [X] T088 [US3] 在 MoodSelector.vue 加入表單提交處理器以呼叫 updateMood API
+- [X] T089 [US3] 在 MoodSelector.vue 為缺少 teamMemberId 或 mood 顯示驗證錯誤訊息（必須選擇團隊成員和心情表情符號）
+- [X] T090 [US3] 在 App.vue 於心情更新後重新整理儀表板資料以顯示新的心情表情符號
 
 ### 使用者故事 3 的整合測試（必要）
 
@@ -204,14 +204,14 @@
 
 ### 使用者故事 4 的實作
 
-- [ ] T096 [US4] 在 GoalMood.BE/Data/IGoalRepository.cs 加入 UpdateCompletionAsync 方法到 IGoalRepository 介面
-- [ ] T097 [US4] 在 GoalRepository.cs 使用 Dapper ExecuteAsync 參數化查詢實作 UpdateCompletionAsync
-- [ ] T098 [US4] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/goals/{goalId}/complete minimal API 端點
-- [ ] T099 [US4] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/goals/{goalId}/uncomplete minimal API 端點
-- [ ] T100 [US4] 在 GoalMood.FE/src/composables/useGoals.ts 加入 toggleComplete 方法到 useGoals composable
-- [ ] T101 [US4] 在 MemberCard.vue 加入核取方塊變更處理器，在勾選/取消勾選時呼叫 toggleComplete API
-- [ ] T102 [US4] 在 MemberCard.vue 使用 :class 綁定對已完成的目標套用刪除線 CSS 類別
-- [ ] T103 [US4] 在 MemberCard.vue 於目標完成狀態切換後重新整理完成計數徽章（即時更新）
+- [X] T096 [US4] 在 GoalMood.BE/Data/IGoalRepository.cs 加入 UpdateCompletionAsync 方法到 IGoalRepository 介面
+- [X] T097 [US4] 在 GoalRepository.cs 使用 Dapper ExecuteAsync 參數化查詢實作 UpdateCompletionAsync
+- [X] T098 [US4] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/goals/{goalId}/complete minimal API 端點
+- [X] T099 [US4] 在 GoalMood.BE/Endpoints/GoalEndpoints.cs 依據 contracts/api.yaml 實作 PUT /api/goals/{goalId}/uncomplete minimal API 端點
+- [X] T100 [US4] 在 GoalMood.FE/src/composables/useGoals.ts 加入 toggleComplete 方法到 useGoals composable
+- [X] T101 [US4] 在 MemberCard.vue 加入核取方塊變更處理器，在勾選/取消勾選時呼叫 toggleComplete API
+- [X] T102 [US4] 在 MemberCard.vue 使用 :class 綁定對已完成的目標套用刪除線 CSS 類別
+- [X] T103 [US4] 在 MemberCard.vue 於目標完成狀態切換後重新整理完成計數徽章（即時更新）
 
 ### 使用者故事 4 的整合測試（必要）
 
@@ -236,19 +236,19 @@
 
 ### 使用者故事 5 的實作
 
-- [ ] T109 [US5] 在 GoalMood.BE/Data/IGoalRepository.cs 加入 GetTodayGoalsStatsAsync 方法到 IGoalRepository 介面
-- [ ] T110 [US5] 在 GoalRepository.cs 使用 Dapper QueryAsync 實作 GetTodayGoalsStatsAsync 以計算完成百分比
-- [ ] T111 [US5] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 加入 GetMoodDistributionAsync 方法到 ITeamMemberRepository 介面
-- [ ] T112 [US5] 在 TeamMemberRepository.cs 使用 Dapper QueryAsync 搭配 GROUP BY mood 實作 GetMoodDistributionAsync
-- [ ] T113 [US5] 在 GoalMood.BE/Endpoints/StatsEndpoints.cs 建立 StatsEndpoints 類別
-- [ ] T114 [US5] 在 GoalMood.BE/Endpoints/StatsEndpoints.cs 依據 contracts/api.yaml 實作 GET /api/stats minimal API 端點，結合目標和心情統計資料
-- [ ] T115 [US5] 在 GoalMood.FE/src/types/Stats.ts 建立 Stats TypeScript 介面，對應 StatsDto schema
-- [ ] T116 [US5] 在 GoalMood.FE/src/composables/useStats.ts 建立 useStats composable，包含 fetchStats 方法
-- [ ] T117 [US5] 在 GoalMood.FE/src/components/StatsPanel.vue 建立 StatsPanel 元件，使用 DaisyUI card 和 badge 元件
-- [ ] T118 [US5] 在 StatsPanel.vue 顯示完成百分比，包含格式化（例如「已完成 65%」）
-- [ ] T119 [US5] 在 StatsPanel.vue 顯示心情分布計數，包含表情符號標籤和計數（例如「😀 3人, 😊 2人」）
-- [ ] T120 [US5] 在 App.vue 儀表板加入 StatsPanel 元件
-- [ ] T121 [US5] 在 App.vue 於任何目標完成切換或心情更新後重新整理統計資料（即時更新完成計數和心情顯示）
+- [X] T109 [US5] 在 GoalMood.BE/Data/IGoalRepository.cs 加入 GetTodayGoalsStatsAsync 方法到 IGoalRepository 介面
+- [X] T110 [US5] 在 GoalRepository.cs 使用 Dapper QueryAsync 實作 GetTodayGoalsStatsAsync 以計算完成百分比
+- [X] T111 [US5] 在 GoalMood.BE/Data/ITeamMemberRepository.cs 加入 GetMoodDistributionAsync 方法到 ITeamMemberRepository 介面
+- [X] T112 [US5] 在 TeamMemberRepository.cs 使用 Dapper QueryAsync 搭配 GROUP BY mood 實作 GetMoodDistributionAsync
+- [X] T113 [US5] 在 GoalMood.BE/Endpoints/StatsEndpoints.cs 建立 StatsEndpoints 類別
+- [X] T114 [US5] 在 GoalMood.BE/Endpoints/StatsEndpoints.cs 依據 contracts/api.yaml 實作 GET /api/stats minimal API 端點，結合目標和心情統計資料
+- [X] T115 [US5] 在 GoalMood.FE/src/types/Stats.ts 建立 Stats TypeScript 介面，對應 StatsDto schema
+- [X] T116 [US5] 在 GoalMood.FE/src/composables/useStats.ts 建立 useStats composable，包含 fetchStats 方法
+- [X] T117 [US5] 在 GoalMood.FE/src/components/StatsPanel.vue 建立 StatsPanel 元件，使用 DaisyUI card 和 badge 元件
+- [X] T118 [US5] 在 StatsPanel.vue 顯示完成百分比，包含格式化（例如「已完成 65%」）
+- [X] T119 [US5] 在 StatsPanel.vue 顯示心情分布計數，包含表情符號標籤和計數（例如「😀 3人, 😊 2人」）
+- [X] T120 [US5] 在 App.vue 儀表板加入 StatsPanel 元件
+- [X] T121 [US5] 在 App.vue 於任何目標完成切換或心情更新後重新整理統計資料（即時更新完成計數和心情顯示）
 
 ### 使用者故事 5 的整合測試（必要）
 

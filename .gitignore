@@ -1,8 +1,33 @@
-
+# C#/.NET
 GoalMood.BE/.idea/
-
 GoalMood.BE/bin/
-
 GoalMood.BE/obj/
+*.user
+*.suo
+packages/
+tests/bin/
+tests/obj/
 
+# Node.js/JavaScript
+node_modules/
+dist/
+build/
+*.log
+.env*
+GoalMood.FE/dist/
+GoalMood.FE/node_modules/
+
+# SQLite Database
+*.db
+*.db-shm
+*.db-wal
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
