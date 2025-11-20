@@ -1,0 +1,451 @@
+openapi: 3.0.3
+info:
+  title: GoalMood API
+  description: |
+    Team Daily Goal Tracker with Mood Sync REST API
+
+    This API provides the following core features:
+    - View all team members with their today's goals
+    - Add, complete, and delete goals
+    - Update team member moods
+    - View team statistics
+
+    **Technical Constraints**:
+    - No user authentication
+    - Last-write-wins (no concurrency control)
+    - Only today's goals displayed (historical data retained but not queried via this API)
+  version: 1.0.0
+  contact:
+    name: GoalMood Team
+servers:
+  - url: http://localhost:5000/api
+    description: Development server
+  - url: https://localhost:5001/api
+    description: Development server (HTTPS)
+
+tags:
+  - name: members
+    description: Team member operations
+  - name: goals
+    description: Goal operations
+  - name: stats
+    description: Statistics operations
+
+paths:
+  /members:
+    get:
+      tags:
+        - members
+      summary: Get all team members
+      description: |
+        Get all team members with their today's goals and current mood.
+        Corresponds to User Story 1 (P1) - View Team Dashboard.
+      operationId: getAllMembers
+      responses:
+        '200':
+          description: Successfully retrieved team members list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamMemberDto'
+              example:
+                - id: 1
+                  name: "Alice Chen"
+                  currentMood: 1
+                  moodEmoji: "😀"
+                  goals:
+                    - id: 1
+                      teamMemberId: 1
+                      description: "Complete requirements analysis"
+                      isCompleted: true
+                      createdDate: "2025-11-19T10:30:00Z"
+                    - id: 2
+                      teamMemberId: 1
+                      description: "Meet with client to confirm specs"
+                      isCompleted: false
+                      createdDate: "2025-11-19T11:00:00Z"
+                  completedCount: 1
+                  totalCount: 2
+                - id: 2
+                  name: "Bob Wang"
+                  currentMood: 3
+                  moodEmoji: "😐"
+                  goals: []
+                  completedCount: 0
+                  totalCount: 0
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /members/{memberId}/mood:
+    put:
+      tags:
+        - members
+      summary: Update team member mood
+      description: |
+        Update the current mood of a specified team member.
+        Corresponds to User Story 3 (P3) - Update Team Member Mood.
+      operationId: updateMemberMood
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: Team member ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMoodRequest'
+            example:
+              mood: 1
+      responses:
+        '200':
+          description: Mood updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMemberDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /goals:
+    post:
+      tags:
+        - goals
+      summary: Create a new goal
+      description: |
+        Add a new goal for a specified team member.
+        Corresponds to User Story 2 (P2) - Add Daily Goals.
+      operationId: createGoal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGoalRequest'
+            example:
+              teamMemberId: 1
+              description: "Complete API documentation"
+      responses:
+        '201':
+          description: Goal created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          description: Specified team member not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Team member not found"
+                field: "teamMemberId"
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /goals/{goalId}/complete:
+    put:
+      tags:
+        - goals
+      summary: Mark goal as completed
+      description: |
+        Mark a specified goal as completed.
+        Corresponds to User Story 4 (P4) - Mark Goal as Completed.
+      operationId: completeGoal
+      parameters:
+        - name: goalId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: Goal ID
+      responses:
+        '200':
+          description: Goal marked as completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalDto'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /goals/{goalId}/uncomplete:
+    put:
+      tags:
+        - goals
+      summary: Mark goal as incomplete
+      description: |
+        Return a completed goal to incomplete status.
+        Corresponds to FR-007.
+      operationId: uncompleteGoal
+      parameters:
+        - name: goalId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: Goal ID
+      responses:
+        '200':
+          description: Goal marked as incomplete successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalDto'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /goals/{goalId}:
+    delete:
+      tags:
+        - goals
+      summary: Delete a goal
+      description: |
+        Delete a specified goal.
+        Corresponds to FR-019 (frontend confirmation dialog required).
+      operationId: deleteGoal
+      parameters:
+        - name: goalId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: Goal ID
+      responses:
+        '204':
+          description: Goal deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /stats:
+    get:
+      tags:
+        - stats
+      summary: Get team statistics
+      description: |
+        Get team's today goal completion percentage and mood distribution.
+        Corresponds to User Story 5 (P5) - View Team Statistics.
+      operationId: getTeamStats
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatsDto'
+              example:
+                completionPercentage: 66.67
+                moodDistribution:
+                  "1": 2
+                  "2": 1
+                  "3": 1
+                  "4": 0
+                  "5": 1
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Mood:
+      type: integer
+      enum: [1, 2, 3, 4, 5]
+      description: |
+        Mood enumeration:
+        - 1: Happy (😀)
+        - 2: Content (😊)
+        - 3: Neutral (😐)
+        - 4: Sad (😞)
+        - 5: Stressed (😤)
+
+    GoalDto:
+      type: object
+      required:
+        - id
+        - teamMemberId
+        - description
+        - isCompleted
+        - createdDate
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          description: Goal ID
+        teamMemberId:
+          type: integer
+          minimum: 1
+          description: Team member ID who owns this goal
+        description:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: Goal description (1-500 characters)
+        isCompleted:
+          type: boolean
+          description: Completion status
+        createdDate:
+          type: string
+          format: date-time
+          description: Creation date and time (ISO 8601 format)
+
+    TeamMemberDto:
+      type: object
+      required:
+        - id
+        - name
+        - currentMood
+        - moodEmoji
+        - goals
+        - completedCount
+        - totalCount
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          description: Team member ID
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: Member name (1-50 characters)
+        currentMood:
+          $ref: '#/components/schemas/Mood'
+        moodEmoji:
+          type: string
+          description: Mood emoji (😀 😊 😐 😞 😤)
+          example: "😀"
+        goals:
+          type: array
+          items:
+            $ref: '#/components/schemas/GoalDto'
+          description: List of today's goals
+        completedCount:
+          type: integer
+          minimum: 0
+          description: Number of completed goals
+        totalCount:
+          type: integer
+          minimum: 0
+          description: Total number of goals
+
+    StatsDto:
+      type: object
+      required:
+        - completionPercentage
+        - moodDistribution
+      properties:
+        completionPercentage:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 100
+          description: Team goal completion percentage (0-100)
+        moodDistribution:
+          type: object
+          additionalProperties:
+            type: integer
+            minimum: 0
+          description: |
+            Mood distribution dictionary, key is Mood enum value (1-5), value is count of members with that mood
+          example:
+            "1": 2
+            "2": 1
+            "3": 1
+            "4": 0
+            "5": 1
+
+    CreateGoalRequest:
+      type: object
+      required:
+        - teamMemberId
+        - description
+      properties:
+        teamMemberId:
+          type: integer
+          minimum: 1
+          description: Team member ID
+        description:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: Goal description (1-500 characters)
+
+    UpdateMoodRequest:
+      type: object
+      required:
+        - mood
+      properties:
+        mood:
+          $ref: '#/components/schemas/Mood'
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+        field:
+          type: string
+          description: Field name that caused the error (provided for validation errors)
+
+  responses:
+    BadRequest:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            missingField:
+              value:
+                error: "Team member is required"
+                field: "teamMemberId"
+            invalidLength:
+              value:
+                error: "Description must be between 1 and 500 characters"
+                field: "description"
+            invalidMood:
+              value:
+                error: "Mood must be between 1 and 5"
+                field: "mood"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Resource not found"
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Internal server error"
