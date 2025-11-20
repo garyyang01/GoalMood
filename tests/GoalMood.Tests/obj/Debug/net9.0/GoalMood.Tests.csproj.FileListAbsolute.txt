@@ -1,0 +1,9 @@
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_GoalMood.Tests
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_GoalMood.Tests
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/GoalMood.Tests.csproj.AssemblyReference.cache
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/MvcTestingAppManifest.json
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/GoalMood.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/GoalMood.Tests.AssemblyInfoInputs.cache
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/GoalMood.Tests.AssemblyInfo.cs
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/GoalMood.Tests.csproj.CoreCompileInputs.cache
+/Users/yangyi-chang/Project/Side Project/GoalMood/tests/GoalMood.Tests/obj/Debug/net9.0/GoalMood.Tests.sourcelink.json

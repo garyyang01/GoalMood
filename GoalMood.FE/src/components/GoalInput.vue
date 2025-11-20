@@ -52,15 +52,18 @@ const handleSubmit = async () => {
     <div class="card-body">
       <h2 class="card-title">Add New Goal</h2>
 
-      <form @submit.prevent="handleSubmit" class="space-y-4">
+      <form @submit.prevent="handleSubmit" class="space-y-4" role="form" aria-label="Add new goal form">
         <!-- Team member selection -->
         <div class="form-control">
-          <label class="label">
+          <label for="member-select" class="label">
             <span class="label-text">Team Member</span>
           </label>
           <select
+            id="member-select"
             v-model="selectedMemberId"
             class="select select-bordered w-full"
+            aria-label="Select team member for the goal"
+            aria-required="true"
           >
             <option :value="null" disabled>Select a team member</option>
             <option v-for="member in members" :key="member.id" :value="member.id">
@@ -71,20 +74,25 @@ const handleSubmit = async () => {
 
         <!-- Goal description -->
         <div class="form-control">
-          <label class="label">
+          <label for="goal-description" class="label">
             <span class="label-text">Goal Description</span>
-            <span class="label-text-alt">{{ description.length }}/500</span>
+            <span class="label-text-alt" aria-live="polite">{{ description.length }}/500</span>
           </label>
           <textarea
+            id="goal-description"
             v-model="description"
             class="textarea textarea-bordered h-24"
             placeholder="Enter goal description..."
             maxlength="500"
+            aria-label="Goal description"
+            aria-required="true"
+            aria-describedby="char-count"
           ></textarea>
+          <span id="char-count" class="sr-only">{{ description.length }} of 500 characters used</span>
         </div>
 
         <!-- Error messages -->
-        <div v-if="validationError || error" class="alert alert-error">
+        <div v-if="validationError || error" class="alert alert-error" role="alert" aria-live="assertive">
           <span>{{ validationError || error }}</span>
         </div>
 
@@ -94,9 +102,11 @@ const handleSubmit = async () => {
             type="submit"
             class="btn btn-primary"
             :disabled="loading"
+            :aria-busy="loading"
+            aria-label="Submit new goal"
           >
-            <span v-if="loading" class="loading loading-spinner"></span>
-            <span v-else>Add Goal</span>
+            <span v-if="loading" class="loading loading-spinner" aria-hidden="true"></span>
+            <span>{{ loading ? 'Adding...' : 'Add Goal' }}</span>
           </button>
         </div>
       </form>

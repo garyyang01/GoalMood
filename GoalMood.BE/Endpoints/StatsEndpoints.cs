@@ -19,14 +19,22 @@ public static class StatsEndpoints
         // GET /api/stats - Get team statistics
         group.MapGet("/", async (
             IGoalRepository goalRepo,
-            ITeamMemberRepository memberRepo) =>
+            ITeamMemberRepository memberRepo,
+            ILogger<Program> logger) =>
         {
+            logger.LogInformation("Fetching team statistics");
+
             // Get goal statistics
             var (total, completed) = await goalRepo.GetTodayGoalsStatsAsync();
             var completionPercentage = total > 0 ? (double)completed / total * 100 : 0;
 
+            logger.LogInformation("Goal stats: {Completed}/{Total} goals completed ({Percentage}%)",
+                completed, total, Math.Round(completionPercentage, 2));
+
             // Get mood distribution
             var moodDistribution = await memberRepo.GetMoodDistributionAsync();
+
+            logger.LogInformation("Mood distribution retrieved: {Count} mood entries", moodDistribution.Count);
 
             var dto = new StatsDto(
                 Math.Round(completionPercentage, 2),

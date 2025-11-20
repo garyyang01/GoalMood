@@ -17,9 +17,11 @@ public static class TeamMemberEndpoints
         var group = app.MapGroup("/api/members").WithTags("Team Members");
 
         // GET /api/members - Get all team members with their today's goals
-        group.MapGet("/", async (ITeamMemberRepository repo) =>
+        group.MapGet("/", async (ITeamMemberRepository repo, ILogger<Program> logger) =>
         {
+            logger.LogInformation("Fetching all team members with today's goals");
             var members = await repo.GetAllWithTodayGoalsAsync();
+            logger.LogInformation("Retrieved {Count} team members", members.Count());
             var dtos = members.Select(m => new TeamMemberDto(
                 m.Id,
                 m.Name,
@@ -45,19 +47,26 @@ public static class TeamMemberEndpoints
         group.MapPut("/{memberId}/mood", async (
             int memberId,
             UpdateMoodRequest request,
-            ITeamMemberRepository repo) =>
+            ITeamMemberRepository repo,
+            ILogger<Program> logger) =>
         {
+            logger.LogInformation("Updating mood for member {MemberId} to {Mood}", memberId, request.Mood);
+
             // Validate mood value
             if (!Enum.IsDefined(typeof(Mood), request.Mood))
             {
+                logger.LogWarning("Invalid mood value {Mood} for member {MemberId}", request.Mood, memberId);
                 return Results.BadRequest(new { error = "Mood must be between 1-5" });
             }
 
             var success = await repo.UpdateMoodAsync(memberId, request.Mood);
             if (!success)
             {
+                logger.LogWarning("Team member {MemberId} not found", memberId);
                 return Results.NotFound(new { error = "Team member not found" });
             }
+
+            logger.LogInformation("Successfully updated mood for member {MemberId}", memberId);
 
             // Return updated member
             var members = await repo.GetAllWithTodayGoalsAsync();

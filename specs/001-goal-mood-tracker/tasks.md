@@ -33,8 +33,8 @@
 - [X] T006 使用 Vite 在 GoalMood.FE/ 建立 Vue 3 TypeScript 專案
 - [X] T007 在 GoalMood.FE/package.json 安裝 DaisyUI 和 Tailwind CSS 依賴項
 - [X] T008 [P] 在 GoalMood.FE/tailwind.config.js 設定 Tailwind CSS 並加入 DaisyUI 外掛
-- [ ] T009 [P] 建立測試專案結構 tests/contract/ 和 tests/integration/
-- [ ] T010 [P] 在測試專案中安裝 xUnit 和 FluentAssertions NuGet 套件
+- [X] T009 [P] 建立測試專案結構 tests/contract/ 和 tests/integration/
+- [X] T010 [P] 在測試專案中安裝 xUnit 和 FluentAssertions NuGet 套件
 
 ---
 
@@ -265,24 +265,24 @@
 
 **目的**：影響多個使用者故事的改進
 
-- [ ] T126 [P] 在 GoalMood.BE/Program.cs 加入錯誤處理中介軟體，依據 contracts/api.yaml 回傳 ErrorResponse 格式
-- [ ] T127 [P] 在端點類別中使用 ILogger 為所有 API 端點加入日誌記錄
-- [ ] T128 [P] 在 GoalMood.FE/src/composables/ 的所有 composables 加入載入狀態（loading: Ref<boolean>）
-- [ ] T129 [P] 在 GoalMood.FE/src/composables/ 的所有 composables 加入錯誤狀態（error: Ref<string | null>）
-- [ ] T130 [P] 在 App.vue 取得資料時使用 DaisyUI loading 元件顯示載入轉圈
-- [ ] T131 [P] 在 App.vue 當 API 呼叫失敗時使用 DaisyUI alert 元件顯示錯誤訊息
+- [X] T126 [P] 在 GoalMood.BE/Program.cs 加入錯誤處理中介軟體，依據 contracts/api.yaml 回傳 ErrorResponse 格式
+- [X] T127 [P] 在端點類別中使用 ILogger 為所有 API 端點加入日誌記錄
+- [X] T128 [P] 在 GoalMood.FE/src/composables/ 的所有 composables 加入載入狀態（loading: Ref<boolean>）
+- [X] T129 [P] 在 GoalMood.FE/src/composables/ 的所有 composables 加入錯誤狀態（error: Ref<string | null>）
+- [X] T130 [P] 在 App.vue 取得資料時使用 DaisyUI loading 元件顯示載入轉圈
+- [X] T131 [P] 在 App.vue 當 API 呼叫失敗時使用 DaisyUI alert 元件顯示錯誤訊息
 - [ ] T132 驗證 SC-001 效能需求 - 儀表板在 2 秒內載入
 - [ ] T133 驗證 SC-006 效能需求 - 變更後 1 秒內更新統計資料
 - [ ] T134 驗證 SC-007 資料持久性 - 重新啟動應用程式並確認所有資料保留
 - [ ] T135 驗證 SC-008 規模需求 - 測試 10 個團隊成員而無效能降低
 - [ ] T136 驗證 SC-009 規模需求 - 測試 50 個總目標而無效能降低
 - [ ] T137 驗證 SC-010 驗證需求 - 表單錯誤在 200ms 內顯示
-- [ ] T138 [P] 在 GoalMood.FE 元件的所有表單輸入加入無障礙屬性（aria-label, role）
-- [ ] T139 [P] 依據 constitution UX 一致性原則驗證所有互動元素的鍵盤導航可運作
-- [ ] T140 使用 `dotnet test --filter FullyQualifiedName~contract` 執行所有合約測試並驗證全部通過
-- [ ] T141 使用 `dotnet test --filter FullyQualifiedName~integration` 執行所有整合測試並驗證全部通過
-- [ ] T142 驗證 quickstart.md 指示 - 遵循所有步驟並驗證應用程式成功執行
-- [ ] T143 在 specs/001-goal-mood-tracker/plan.md 更新任何與原始計劃偏離的文件
+- [X] T138 [P] 在 GoalMood.FE 元件的所有表單輸入加入無障礙屬性（aria-label, role）
+- [X] T139 [P] 依據 constitution UX 一致性原則驗證所有互動元素的鍵盤導航可運作
+- [X] T140 使用 `dotnet test --filter FullyQualifiedName~contract` 執行所有合約測試並驗證全部通過
+- [X] T141 使用 `dotnet test --filter FullyQualifiedName~integration` 執行所有整合測試並驗證全部通過
+- [X] T142 驗證 quickstart.md 指示 - 遵循所有步驟並驗證應用程式成功執行
+- [X] T143 在 specs/001-goal-mood-tracker/plan.md 更新任何與原始計劃偏離的文件
 
 ---
 
