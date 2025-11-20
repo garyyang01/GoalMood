@@ -26,14 +26,32 @@ const moodLabels: Record<Mood, string> = {
 const moodDistributionArray = computed(() => {
   if (!props.stats?.moodDistribution) return []
 
-  return Object.entries(props.stats.moodDistribution)
+  const result = Object.entries(props.stats.moodDistribution)
     .filter(([_, count]) => count > 0)
-    .map(([mood, count]) => ({
-      mood: Number(mood) as Mood,
-      count,
-      emoji: moodEmojis[Number(mood) as Mood],
-      label: moodLabels[Number(mood) as Mood],
-    }))
+    .map(([moodKey, count]) => {
+      // Handle both numeric keys ("1", "2") and string keys ("Happy", "Content")
+      let moodNum: Mood
+
+      // Try parsing as number first
+      const parsed = Number(moodKey)
+      if (!isNaN(parsed)) {
+        moodNum = parsed as Mood
+      } else {
+        // If it's a string name, convert to enum value
+        const moodName = moodKey as keyof typeof Mood
+        moodNum = Mood[moodName] as Mood
+      }
+
+      return {
+        mood: moodNum,
+        count,
+        emoji: moodEmojis[moodNum],
+        label: moodLabels[moodNum],
+      }
+    })
+    .filter(item => item.emoji && item.label) // Filter out invalid entries
+
+  return result
 })
 
 const totalPeople = computed(() => {
@@ -66,14 +84,19 @@ const totalPeople = computed(() => {
           <div v-if="totalPeople === 0" class="text-gray-500 text-sm">
             No mood data available
           </div>
-          <div v-else class="flex flex-wrap gap-2">
+          <div v-else class="space-y-2">
             <div
               v-for="item in moodDistributionArray"
               :key="item.mood"
-              class="badge badge-lg gap-1"
+              class="flex items-center gap-4 bg-base-200 p-4 rounded-lg"
             >
-              <span>{{ item.emoji }}</span>
-              <span>{{ item.count }}</span>
+              <div class="text-5xl" style="min-width: 3rem; line-height: 1;">
+                {{ item.emoji || '❓' }}
+              </div>
+              <div class="flex-1">
+                <div class="text-2xl font-bold">{{ item.count }}</div>
+                <div class="text-sm opacity-70">{{ item.label || 'Unknown' }}</div>
+              </div>
             </div>
           </div>
         </div>
